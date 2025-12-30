@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>إنفوجرافيك نماذج التدريب</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f4f6f8;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .container {
+            background: white;
+            width: 1000px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 3em;
+            margin: 0;
+            font-weight: 900;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+        }
+
+        .column {
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .col-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .col-desc {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        /* ADDIE Styles */
+        .addie-box {
+            background-color: #eaf6ff;
+            border: 2px solid #3498db;
+        }
+        .addie-title { background-color: #3498db; }
+        .step {
+            background: white;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            border-right: 5px solid #3498db;
+            text-align: right;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .step span { margin-left: 10px; font-size: 1.2em; }
+
+        /* Kirkpatrick Styles */
+        .kirk-box {
+            background-color: #fff9e6;
+            border: 2px solid #f1c40f;
+        }
+        .kirk-title { background-color: #f39c12; }
+        .pyramid-level {
+            padding: 15px;
+            margin: 5px 0;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px 5px 0 0;
+            clip-path: polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%);
+        }
+        .lvl-4 { background: #d35400; width: 60%; margin: 0 auto; }
+        .lvl-3 { background: #e67e22; width: 75%; margin: 2px auto; }
+        .lvl-2 { background: #f39c12; width: 85%; margin: 2px auto; }
+        .lvl-1 { background: #f1c40f; width: 95%; margin: 2px auto; color: #333;}
+
+        /* 70:20:10 Styles */
+        .ratio-box {
+            background-color: #e8f8f5;
+            border: 2px solid #27ae60;
+        }
+        .ratio-title { background-color: #27ae60; }
+        .chart-item {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        .bar-container {
+            background: #dcdcdc;
+            border-radius: 10px;
+            height: 25px;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+        .bar {
+            height: 100%;
+            line-height: 25px;
+            color: white;
+            text-align: center;
+            font-size: 0.8em;
+        }
+        .bar-70 { width: 70%; background: #145a32; }
+        .bar-20 { width: 20%; background: #27ae60; }
+        .bar-10 { width: 10%; background: #58d68d; }
+
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #7f8c8d;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .social {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>خارطة طريق التميز في التدريب</h1>
+            <div class="subtitle">دليل شامل لأهم النماذج العالمية في التعليم والتطوير</div>
+        </header>
+
+        <div class="grid">
+            <div class="column addie-box">
+                <div class="col-title addie-title">نموذج ADDIE</div>
+                <div class="col-desc">دورة حياة التصميم التعليمي المتكامل</div>
+                
+                <div class="step"><span>🔍</span> التحليل (Analysis)</div>
+                <div class="step"><span>📐</span> التصميم (Design)</div>
+                <div class="step"><span>🛠️</span> التطوير (Development)</div>
+                <div class="step"><span>🎤</span> التنفيذ (Implementation)</div>
+                <div class="step"><span>⚖️</span> التقييم (Evaluation)</div>
+            </div>
+
+            <div class="column kirk-box">
+                <div class="col-title kirk-title">نموذج كيركباتريك</div>
+                <div class="col-desc">المستويات الأربعة لقياس أثر التدريب</div>
+                
+                <div style="margin-top: 30px;">
+                    <div class="pyramid-level lvl-4">4. النتائج (ROI)</div>
+                    <div class="pyramid-level lvl-3">3. السلوك (التطبيق)</div>
+                    <div class="pyramid-level lvl-2">2. التعلم (المعرفة)</div>
+                    <div class="pyramid-level lvl-1">1. رد الفعل (الرضا)</div>
+                </div>
+                <p style="font-size:0.8em; margin-top:20px; color:#666;">يبدأ التقييم من الأسفل، لكن التخطيط يبدأ من الأعلى.</p>
+            </div>
+
+            <div class="column ratio-box">
+                <div class="col-title ratio-title">نموذج 70:20:10</div>
+                <div class="col-desc">كيف نكتسب الخبرات فعلياً؟</div>
+
+                <div class="chart-item">
+                    <strong>70% التجريبي</strong> <small>(مهام، تحديات، ممارسة)</small>
+                    <div class="bar-container"><div class="bar bar-70">70%</div></div>
+                </div>
+
+                <div class="chart-item">
+                    <strong>20% الاجتماعي</strong> <small>(توجيه، زملاء، مدير)</small>
+                    <div class="bar-container"><div class="bar bar-20">20%</div></div>
+                </div>
+
+                <div class="chart-item">
+                    <strong>10% الرسمي</strong> <small>(دورات، ورش، قراءة)</small>
+                    <div class="bar-container"><div class="bar bar-10">10%</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="social">X: @YourUsername | LinkedIn: Your Name</div>
+            <div>تم التصميم بناءً على أفضل الممارسات العالمية</div>
+        </div>
+    </div>
+
+</body>
+</html>
