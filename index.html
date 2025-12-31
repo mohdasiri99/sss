@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>عرض تقديمي: استراتيجيات التدريب الفريدة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* استيراد خطوط عربية احترافية ورسمية */
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;700&display=swap');
@@ -22,7 +23,7 @@
             height: 100%;
             font-family: 'Cairo', sans-serif;
             background-color: var(--primary-dark);
-            overflow: hidden; /* لمنع التمرير، التركيز على العرض */
+            /* overflow: hidden;  تم إيقاف هذا السطر للسماح بالطباعة */
         }
 
         /* حاوية العرض الرئيسية */
@@ -30,7 +31,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 90vh;
+            min-height: 90vh; /* changed from height to min-height */
             padding: 20px;
         }
 
@@ -39,7 +40,8 @@
             background: var(--bg-slide);
             width: 90%;
             max-width: 1200px;
-            height: 80vh;
+            /* height: 80vh; تم إيقاف تحديد الطول الثابت لمرونة الطباعة */
+            min-height: 80vh; /* استخدام حد أدنى للارتفاع بدلاً من ذلك */
             border-radius: 15px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.3);
             display: none; /* إخفاء جميع الشرائح افتراضياً */
@@ -47,22 +49,23 @@
             overflow: hidden;
             position: relative;
             border-top: 8px solid var(--accent-gold);
+            margin-bottom: 0; /* مهم للطباعة */
         }
 
         /* الشريحة النشطة فقط تظهر */
         .slide.active {
             display: flex;
-            animation: fadeIn 0.6s ease-in-out;
+            /* animation: fadeIn 0.6s ease-in-out; تم تعطيل الأنيميشن لأنه يسبب مشاكل في بعض المتصفحات عند الطباعة */
         }
 
-        @keyframes fadeIn {
+        /* @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
-        }
+        } */
 
         /* رأس الشريحة */
         .slide-header {
-            padding: 40px 50px;
+            padding: 30px 50px; /* تقليل الهوامش قليلاً */
             background: #fcfcfc;
             border-bottom: 1px solid #eee;
         }
@@ -70,7 +73,7 @@
         .slide-header h2 {
             margin: 0;
             color: var(--primary-dark);
-            font-size: 2.5em;
+            font-size: 2.2em;
             font-weight: 900;
             font-family: 'Tajawal', sans-serif;
         }
@@ -87,7 +90,7 @@
 
         /* محتوى الشريحة */
         .slide-content {
-            padding: 50px;
+            padding: 40px 50px;
             flex-grow: 1;
             display: flex;
             gap: 40px;
@@ -104,19 +107,19 @@
             border-top: none;
         }
         .title-slide h1 {
-            font-size: 4em;
+            font-size: 3.5em;
             margin-bottom: 20px;
             color: var(--accent-gold);
         }
         .title-slide p {
-            font-size: 1.5em;
+            font-size: 1.3em;
             opacity: 0.9;
         }
 
         /* مربعات المقارنة (القديم vs الجديد) */
         .comparison-box {
             flex: 1;
-            padding: 30px;
+            padding: 25px;
             border-radius: 12px;
         }
 
@@ -131,9 +134,9 @@
         }
 
         .box-title {
-            font-size: 1.4em;
+            font-size: 1.3em;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
         }
@@ -143,44 +146,56 @@
         .box-title span { margin-left: 10px; font-size: 1.2em; }
         
         .comparison-box p {
-            font-size: 1.1em;
+            font-size: 1em;
             line-height: 1.6;
             color: var(--text-dark);
+            margin: 0;
         }
 
         .efficiency-note {
-             margin-top: 30px;
-             padding: 20px;
+             margin-top: 25px;
+             padding: 15px;
              background: rgba(197, 164, 126, 0.1);
              border-radius: 8px;
              color: var(--primary-dark);
              font-weight: 600;
+             font-size: 0.95em;
         }
         .efficiency-note strong { color: var(--accent-gold); }
 
 
-        /* أزرار التنقل */
-        .navigation {
+        /* أزرار التنقل والتحميل */
+        .controls-container {
             position: fixed;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 20px;
+            gap: 15px;
             z-index: 100;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
         }
 
-        .nav-btn {
-            padding: 12px 30px;
+        .nav-btn, .print-btn {
+            padding: 12px 25px;
             border: none;
-            background-color: var(--accent-gold);
-            color: var(--primary-dark);
             font-size: 1em;
             font-weight: bold;
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Cairo', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn {
+            background-color: var(--accent-gold);
+            color: var(--primary-dark);
         }
 
         .nav-btn:hover:not(:disabled) {
@@ -192,6 +207,18 @@
             background-color: #555;
             color: #888;
             cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* زر الطباعة الجديد */
+        .print-btn {
+            background-color: var(--text-light);
+            color: var(--primary-dark);
+        }
+        .print-btn:hover {
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(255,255,255,0.3);
+             transform: translateY(-3px);
         }
         
         .slide-counter {
@@ -202,12 +229,70 @@
             font-weight: bold;
         }
 
+        /* =========================================
+           CSS مخصص للطباعة وتحويل PDF
+           هذا الجزء هو السر في جعل الـ PDF يعمل
+        ========================================= */
+        @media print {
+            body, html {
+                background-color: #fff !important; /* خلفية بيضاء للطباعة */
+                height: auto !important;
+                overflow: visible !important;
+            }
+
+            .presentation-container {
+                display: block !important; /* إلغاء نظام Flex للعرض */
+                padding: 0 !important;
+                height: auto !important;
+            }
+
+            /* إظهار جميع الشرائح وإلغاء تنسيقات العرض التقديمي */
+            .slide, .slide.active {
+                display: flex !important; /* إظهار الكل */
+                opacity: 1 !important;
+                transform: none !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                min-height: auto !important; /* ارتفاع تلقائي */
+                height: auto !important;
+                box-shadow: none !important; /* إزالة الظل لتوفير الحبر */
+                border-radius: 0 !important;
+                margin: 0 !important;
+                border-top: 5px solid var(--accent-gold) !important; /* تصغير الشريط العلوي */
+                
+                /* الأهم: إجبار كل شريحة في صفحة جديدة */
+                break-after: page; 
+                page-break-after: always;
+            }
+            
+            /* تعديلات خاصة لشريحة العنوان في الطباعة */
+            .title-slide {
+                background: #fff !important;
+                color: #000 !important;
+                border-bottom: 2px solid var(--accent-gold);
+                padding: 100px 20px !important;
+            }
+            .title-slide h1 { color: var(--primary-dark) !important; }
+            .title-slide p { color: #333 !important; }
+
+            /* إخفاء عناصر التحكم عند الطباعة */
+            .controls-container, .slide-counter {
+                display: none !important;
+            }
+
+            /* تحسينات لألوان النصوص عند الطباعة */
+            .slide-header h2, .box-title, .efficiency-note {
+                color: #000 !important;
+            }
+            p { color: #333 !important; }
+            .efficiency-note { background: #f9f9f9 !important; border: 1px solid #eee; }
+        }
+
     </style>
 </head>
 <body>
 
     <div class="presentation-container">
-
         <div class="slide title-slide active">
             <h1>النقلة النوعية في كفاءة التدريب</h1>
             <p>استراتيجيات فريدة ورؤى مستقبلية لإعادة تعريف التعلم المؤسسي</p>
@@ -370,16 +455,22 @@
 
     </div>
 
-    <div class="navigation">
+    <div class="controls-container">
         <button class="nav-btn" id="prevBtn" disabled>السابق</button>
+        
+        <button class="print-btn" id="printPdfBtn">
+            <i class="fas fa-file-pdf"></i> تحميل كـ PDF
+        </button>
+
         <button class="nav-btn" id="nextBtn">التالي</button>
     </div>
 
     <script>
-        // كود جافاسكربت بسيط للتحكم في تقليب الشرائح
+        // كود جافاسكربت للتحكم في الشرائح والطباعة
         const slides = document.querySelectorAll('.slide');
         const nextBtn = document.getElementById('nextBtn');
         const prevBtn = document.getElementById('prevBtn');
+        const printPdfBtn = document.getElementById('printPdfBtn'); // زر الطباعة
         let currentSlide = 0;
 
         function showSlide(index) {
@@ -389,8 +480,6 @@
                     slide.classList.add('active');
                 }
             });
-
-            // التحكم في تفعيل الأزرار عند البداية والنهاية
             prevBtn.disabled = index === 0;
             nextBtn.disabled = index === slides.length - 1;
         }
@@ -409,7 +498,11 @@
             }
         });
 
-        // بدء العرض بالشريحة الأولى
+        // وظيفة زر الطباعة الجديد
+        printPdfBtn.addEventListener('click', () => {
+            window.print(); // هذا يفتح نافذة الطباعة في المتصفح
+        });
+
         showSlide(currentSlide);
     </script>
 
