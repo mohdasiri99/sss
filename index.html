@@ -6,12 +6,11 @@
     <title>عرض تقديمي: أفكار حديثة في التدريب - محمد علي عسيري</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* استيراد خطوط عربية احترافية ورسمية */
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;700&display=swap');
 
         :root {
-            --primary-dark: #0a1f35; /* كحلي داكن رسمي */
-            --accent-gold: #c5a47e; /* ذهبي هادئ للتميز */
+            --primary-dark: #0a1f35;
+            --accent-gold: #c5a47e;
             --text-light: #f4f4f9;
             --text-dark: #2c3e50;
             --bg-slide: #ffffff;
@@ -25,7 +24,6 @@
             background-color: var(--primary-dark);
         }
 
-        /* حاوية العرض الرئيسية */
         .presentation-container {
             display: flex;
             justify-content: center;
@@ -34,7 +32,6 @@
             padding: 20px;
         }
 
-        /* تصميم الشريحة */
         .slide {
             background: var(--bg-slide);
             width: 90%;
@@ -42,20 +39,19 @@
             min-height: 80vh;
             border-radius: 15px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            display: none; /* إخفاء جميع الشرائح افتراضياً */
+            display: none;
             flex-direction: column;
             overflow: hidden;
             position: relative;
             border-top: 8px solid var(--accent-gold);
             margin-bottom: 0;
+            padding-bottom: 60px; /* مساحة للتذييل */
         }
 
-        /* الشريحة النشطة فقط تظهر */
         .slide.active {
             display: flex;
         }
 
-        /* رأس الشريحة */
         .slide-header {
             padding: 30px 50px;
             background: #fcfcfc;
@@ -80,7 +76,6 @@
             display: block;
         }
 
-        /* محتوى الشريحة */
         .slide-content {
             padding: 40px 50px;
             flex-grow: 1;
@@ -89,7 +84,7 @@
             align-items: stretch;
         }
 
-        /* تصميم شريحة العنوان الرئيسية - تعديلات جديدة */
+        /* تصميم شريحة العنوان الرئيسية */
         .title-slide {
             background: var(--primary-dark);
             color: var(--text-light);
@@ -97,6 +92,7 @@
             justify-content: center;
             align-items: center;
             border-top: none;
+            padding-bottom: 0; /* لا تحتاج لتذييل إضافي */
         }
         .title-slide h1 {
             font-size: 3.5em;
@@ -109,7 +105,6 @@
             margin-bottom: 40px;
         }
         
-        /* قسم المؤلف الجديد في شريحة العنوان */
         .author-section {
             margin-top: 30px;
             padding-top: 30px;
@@ -132,13 +127,43 @@
             gap: 10px;
             font-size: 1.1em;
             color: var(--accent-gold);
+            direction: ltr; /* لضمان ظهور @ قبل الاسم */
         }
         .author-social i {
             font-size: 1.2em;
         }
 
+        /* تصميم التذييل الجديد */
+        .slide-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 50px;
+            background: #fcfcfc;
+            border-top: 1px solid #eee;
+            color: var(--text-dark);
+            font-size: 0.9em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        .footer-info {
+            display: flex;
+            gap: 20px;
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+        .footer-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-info i { font-size: 1.1em; }
 
-        /* مربعات المقارنة (القديم vs الجديد) */
+
+        /* مربعات المقارنة */
         .comparison-box {
             flex: 1;
             padding: 25px;
@@ -243,11 +268,7 @@
         }
         
         .slide-counter {
-            position: absolute;
-            bottom: 20px;
-            left: 30px;
-            color: #999;
-            font-weight: bold;
+            /* تم نقل العداد إلى داخل التذييل الجديد */
         }
 
         /* =========================================
@@ -278,12 +299,12 @@
                 border-radius: 0 !important;
                 margin: 0 !important;
                 border-top: 5px solid var(--accent-gold) !important;
+                padding-bottom: 60px !important; /* الحفاظ على مساحة التذييل عند الطباعة */
                 
                 break-after: page; 
                 page-break-after: always;
             }
             
-            /* تعديلات خاصة لشريحة العنوان في الطباعة */
             .title-slide {
                 background: #fff !important;
                 color: #000 !important;
@@ -294,17 +315,23 @@
             .title-slide p, .title-slide h3 { color: #333 !important; }
             .author-social { color: var(--primary-dark) !important; }
 
-            /* إخفاء عناصر التحكم عند الطباعة */
-            .controls-container, .slide-counter {
+            .controls-container {
                 display: none !important;
             }
 
-            /* تحسينات لألوان النصوص عند الطباعة */
             .slide-header h2, .box-title, .efficiency-note {
                 color: #000 !important;
             }
             p { color: #333 !important; }
             .efficiency-note { background: #f9f9f9 !important; border: 1px solid #eee; }
+            
+            /* ضمان ظهور التذييل في الطباعة */
+            .slide-footer {
+                position: absolute !important;
+                bottom: 0 !important;
+                background: #fff !important;
+                border-top: 1px solid #eee !important;
+            }
         }
 
     </style>
@@ -345,7 +372,16 @@
                     </div>
                 </div>
             </div>
-            <div class="slide-counter">2 / 9</div>
+            <div class="slide-footer">
+                <div class="footer-info">
+                    <span><i class="fas fa-user-tie"></i> محمد علي عسيري</span>
+                    <span>|</span>
+                    <span>كوتش تطوير الأداء</span>
+                    <span>|</span>
+                    <span style="direction: ltr;"><i class="fa-brands fa-x-twitter"></i> @mohdasiri99</span>
+                </div>
+                <div class="slide-counter">2 / 9</div>
+            </div>
         </div>
 
         <div class="slide">
@@ -366,7 +402,16 @@
                     </div>
                 </div>
             </div>
-            <div class="slide-counter">3 / 9</div>
+            <div class="slide-footer">
+                <div class="footer-info">
+                    <span><i class="fas fa-user-tie"></i> محمد علي عسيري</span>
+                    <span>|</span>
+                    <span>كوتش تطوير الأداء</span>
+                    <span>|</span>
+                    <span style="direction: ltr;"><i class="fa-brands fa-x-twitter"></i> @mohdasiri99</span>
+                </div>
+                <div class="slide-counter">3 / 9</div>
+            </div>
         </div>
 
         <div class="slide">
@@ -387,7 +432,16 @@
                     </div>
                 </div>
             </div>
-            <div class="slide-counter">4 / 9</div>
+            <div class="slide-footer">
+                <div class="footer-info">
+                    <span><i class="fas fa-user-tie"></i> محمد علي عسيري</span>
+                    <span>|</span>
+                    <span>كوتش تطوير الأداء</span>
+                    <span>|</span>
+                    <span style="direction: ltr;"><i class="fa-brands fa-x-twitter"></i> @mohdasiri99</span>
+                </div>
+                <div class="slide-counter">4 / 9</div>
+            </div>
         </div>
 
         <div class="slide">
@@ -408,7 +462,16 @@
                     </div>
                 </div>
             </div>
-            <div class="slide-counter">5 / 9</div>
+            <div class="slide-footer">
+                <div class="footer-info">
+                    <span><i class="fas fa-user-tie"></i> محمد علي عسيري</span>
+                    <span>|</span>
+                    <span>كوتش تطوير الأداء</span>
+                    <span>|</span>
+                    <span style="direction: ltr;"><i class="fa-brands fa-x-twitter"></i> @mohdasiri99</span>
+                </div>
+                <div class="slide-counter">5 / 9</div>
+            </div>
         </div>
 
          <div class="slide">
@@ -429,7 +492,16 @@
                     </div>
                 </div>
             </div>
-            <div class="slide-counter">6 / 9</div>
+            <div class="slide-footer">
+                <div class="footer-info">
+                    <span><i class="fas fa-user-tie"></i> محمد علي عسيري</span>
+                    <span>|</span>
+                    <span>كوتش تطوير الأداء</span>
+                    <span>|</span>
+                    <span style="direction: ltr;"><i class="fa-brands fa-x-twitter"></i> @mohdasiri99</span>
+                </div>
+                <div class="slide-counter">6 / 9</div>
+            </div>
         </div>
 
         <div class="slide">
@@ -450,7 +522,16 @@
                     </div>
                 </div>
             </div>
-            <div class="slide-counter">7 / 9</div>
+            <div class="slide-footer">
+                <div class="footer-info">
+                    <span><i class="fas fa-user-tie"></i> محمد علي عسيري</span>
+                    <span>|</span>
+                    <span>كوتش تطوير الأداء</span>
+                    <span>|</span>
+                    <span style="direction: ltr;"><i class="fa-brands fa-x-twitter"></i> @mohdasiri99</span>
+                </div>
+                <div class="slide-counter">7 / 9</div>
+            </div>
         </div>
 
          <div class="slide">
@@ -471,7 +552,16 @@
                     </div>
                 </div>
             </div>
-            <div class="slide-counter">8 / 9</div>
+            <div class="slide-footer">
+                <div class="footer-info">
+                    <span><i class="fas fa-user-tie"></i> محمد علي عسيري</span>
+                    <span>|</span>
+                    <span>كوتش تطوير الأداء</span>
+                    <span>|</span>
+                    <span style="direction: ltr;"><i class="fa-brands fa-x-twitter"></i> @mohdasiri99</span>
+                </div>
+                <div class="slide-counter">8 / 9</div>
+            </div>
         </div>
 
         <div class="slide title-slide">
@@ -479,7 +569,16 @@
             <p style="max-width: 800px; margin: 0 auto; line-height: 1.8; font-size: 1.5em;">
                 الانتقال من التدريب كـ "حدث" منفصل إلى التدريب كـ "رحلة مستمرة" مدمجة في سياق العمل، والتركيز على الأثر السلوكي بدلاً من كمية المحتوى، هو جوهر الكفاءة التدريبية الحديثة.
             </p>
-            <div class="slide-counter">9 / 9</div>
+            <div class="slide-footer" style="background: var(--primary-dark); border-top: 1px solid rgba(197, 164, 126, 0.3);">
+                <div class="footer-info">
+                    <span><i class="fas fa-user-tie"></i> محمد علي عسيري</span>
+                    <span>|</span>
+                    <span>كوتش تطوير الأداء</span>
+                    <span>|</span>
+                    <span style="direction: ltr;"><i class="fa-brands fa-x-twitter"></i> @mohdasiri99</span>
+                </div>
+                <div class="slide-counter" style="color: var(--accent-gold);">9 / 9</div>
+            </div>
         </div>
 
     </div>
